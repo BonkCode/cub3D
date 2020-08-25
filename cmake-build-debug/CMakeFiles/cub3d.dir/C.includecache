@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/rtrant/Desktop/Projects/rtrantGit/cub3D/main.c
+stdio.h
+-
+mlx.h
+-
+v_types.h
+/Users/rtrant/Desktop/Projects/rtrantGit/cub3D/v_types.h
+
+/Users/rtrant/Desktop/Projects/rtrantGit/cub3D/v_types.h
+
