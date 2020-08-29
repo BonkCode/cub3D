@@ -56,11 +56,21 @@ int		draw_line(t_data *img, t_vector2 start, t_vector2 end, int thickness, int c
 		my_mlx_pixel_put(img, (int)pos.x, (int)pos.y, color);
 		while (local_abs((int)prev_pos.y - (int)pos.y) > 1)
 		{
+<<<<<<< HEAD
 			my_mlx_pixel_put(img, (int)pos.x, (int)prev_pos.y, color);
 			prev_pos.y += pos.y > prev_pos.y ? 1 : -1;
+=======
+			pos.y = k * pos.x + current_b; // store prev_pos.y, check if the are far (y1 - y2 > 1) and draw pixels in between in a while loop 
+			my_mlx_pixel_put(img, (int)pos.x, (int)pos.y, color);
+			++pos.x;
+>>>>>>> 7d5bacd785fa74f00289607d20b7065cba47e8db
 		}
 		//++pos.x;
 	}
+<<<<<<< HEAD
 	++i;
 	return (0);
 }
+=======
+}
+>>>>>>> 7d5bacd785fa74f00289607d20b7065cba47e8db
