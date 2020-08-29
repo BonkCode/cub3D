@@ -1,6 +1,6 @@
 SRCS = main.c colors.c drawing/draw_rect.c vector_funcs/vector2.c drawing/draw_line.c drawing/my_mlx_pixel_put.c \
-drawing/test_line.c raycast.c distance.c
-CFLAGS			= -O3 -Wall -Wextra -Werror -I.
+raycast.c distance.c file_to_image.c draw_sprites.c
+CFLAGS			= -O3 -I.
 CC				= gcc
 MLX				= libmlx.a
 LIBS			= -lmlx -framework OpenGL -framework AppKit -lm

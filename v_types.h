@@ -4,8 +4,9 @@
 
 #ifndef CUB3D_V_TYPES_H
 # define CUB3D_V_TYPES_H
-# define PI 3.14159265359
+# define PI 3.141592
 # define LINE_THRESHOLD .3
+# define DR 0.0174533
 
 typedef struct	s_vector2
 {
@@ -44,6 +45,7 @@ typedef struct	s_ray
 {
 	t_vector2	pos;
 	double		rotation;
+	double		length;
 	t_vector2	offset;
 }				t_ray;
 
@@ -53,6 +55,8 @@ typedef struct	s_game
 	t_vars		vars;
 	t_data		img;
 	int			**map;
+	int			map_active;
+	int			rays_count;
 }				t_game;
 
 # endif

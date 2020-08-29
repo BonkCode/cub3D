@@ -20,36 +20,47 @@ double	local_abs(double x)
 	return (x > 0 ? x : -x);
 }
 
-void	draw_line(t_data *img, t_vector2 start, t_vector2 end, int thickness, int color)
+int		draw_line(t_data *img, t_vector2 start, t_vector2 end, int thickness, int color)
 {
 	t_vector2	pos;
-	double			k;
-	double			b;
+	t_vector2	prev_pos;
+	double		k;
+	double		b;
 	int			i;
-	double			current_b;
 
 	if (thickness < 0)
-		return ;
+		return (-1);
 	i = -thickness;	
 	if (start.x > end.x)
 		swap_v2(&start, &end);
+	if ((int)end.x - (int)start.x == 0)
+	{
+		pos.y = start.y;
+		b = start.y < end.y ? 1 : -1;
+		while ((int)pos.y != (int)end.y)
+		{
+			my_mlx_pixel_put(img, (int)start.x, (int)pos.y, color);
+			pos.y += b;
+		}
+		return (0);
+	}
 	k = (end.y - start.y) / (end.x - start.x);
 	b = start.y - k * start.x;
-	while (i < thickness)
+	pos.x = start.x;
+	pos.y = k * pos.x + b;
+	my_mlx_pixel_put(img, (int)pos.x, (int)pos.y, color);
+	while (++pos.x <= end.x)
 	{
-		pos.x = start.x;
-		current_b = b;
-		while (pos.x < end.x)
+		prev_pos = new_vector2(pos.x - 1, pos.y);
+		pos.y = k * pos.x + b;
+		my_mlx_pixel_put(img, (int)pos.x, (int)pos.y, color);
+		while (local_abs((int)prev_pos.y - (int)pos.y) > 1)
 		{
-			pos.y = k * pos.x + current_b;
-			if (local_abs(pos.x - (int)pos.x) + local_abs(pos.y - (int)pos.y) > LINE_THRESHOLD)
-			{
-				my_mlx_pixel_put(img, (int)(pos.x + 1), (int)pos.y, color);
-				my_mlx_pixel_put(img, (int)(pos.x - 1), (int)pos.y, color);
-			}
-			my_mlx_pixel_put(img, (int)pos.x, (int)pos.y, color);
-			++pos.x;
+			my_mlx_pixel_put(img, (int)pos.x, (int)prev_pos.y, color);
+			prev_pos.y += pos.y > prev_pos.y ? 1 : -1;
 		}
-		++i;
+		//++pos.x;
 	}
+	++i;
+	return (0);
 }
