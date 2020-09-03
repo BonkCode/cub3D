@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 
-void	file_to_image(t_data img, t_data *image, t_vector2 coordinates, t_vector2 offset, t_vector2 size, int width, int height, int transparent, t_win win)
+void	file_to_image(t_data img, t_data *image, t_vector2 coordinates, t_vector2 offset, t_vector2 size, int width, int height, int transparent, t_win win, int const_x)
 {
 	t_vector2	pos;
 	t_vector2	scale;
@@ -27,7 +27,7 @@ void	file_to_image(t_data img, t_data *image, t_vector2 coordinates, t_vector2 o
 		pos.x = -1;
 		while (++pos.x < size.x)
 		{
-			closest_neighboor = new_ivector2((int)round(pos.x / scale.x), (int)round(pos.y / scale.y));
+			closest_neighboor = new_ivector2(const_x == 0 ? (int)round(pos.x / scale.x) : 0, (int)round(pos.y / scale.y));
 			closest_neighboor.x = closest_neighboor.x >= width ? width - 1 : closest_neighboor.x;
 			closest_neighboor.y = closest_neighboor.y >= height ? height - 1 : closest_neighboor.y;
 			dst = img.addr + ((closest_neighboor.y + (int)offset.y) * img.line_length + (closest_neighboor.x + (int)offset.x) * (img.bits_per_pixel / 8));

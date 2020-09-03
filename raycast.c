@@ -142,6 +142,10 @@ void	cast_rays(t_player player, char **map, t_data *img, int rays_count, t_vars 
 	int		line_width;
 	int		texture_x;
 	int		texture_y;
+	t_data	n_texture;
+	t_data	s_texture;
+	t_data	w_texture;
+	t_data	e_texture;
 	t_data	texture;
 	int		i;
 
@@ -153,6 +157,11 @@ void	cast_rays(t_player player, char **map, t_data *img, int rays_count, t_vars 
 		player.rotation += 2 * PI;
 	current_ray_number = -1;
 	drawn_count = 0;
+	line_width = (int)round((float)win.x / (float)rays_count);
+	n_texture.img = mlx_xpm_file_to_image(vars.mlx, game.config.textures.n_path, &texture_x, &texture_y);
+	s_texture.img = mlx_xpm_file_to_image(vars.mlx, game.config.textures.s_path, &texture_x, &texture_y);
+	w_texture.img = mlx_xpm_file_to_image(vars.mlx, game.config.textures.w_path, &texture_x, &texture_y);
+	e_texture.img = mlx_xpm_file_to_image(vars.mlx, game.config.textures.e_path, &texture_x, &texture_y);
 	while (++current_ray_number < rays_count)
 	{
 		h_ray = cast_h_rays(player, map, win, map_size);
@@ -172,32 +181,28 @@ void	cast_rays(t_player player, char **map, t_data *img, int rays_count, t_vars 
 			shortest_ray = get_distance(player.pos, h_ray.pos) < get_distance(player.pos, v_ray.pos) ? h_ray : v_ray;
 			color = get_distance(player.pos, h_ray.pos) < get_distance(player.pos, v_ray.pos) ? 0x0000FF00 : 0x000000FF;
 		}
-		/*
 		if (color == 0x0000FF00 && (player.rotation <= PI && player.rotation >= 0))
-			texture_path = game.config.textures.s_path;
+			texture = s_texture;
 		else if (color == 0x0000FF00)
-			texture_path = game.config.textures.n_path;
+			texture = n_texture;
 		else if (player.rotation >= PI / 2 & player.rotation <= 3 * PI / 2)
-			texture_path = game.config.textures.e_path;
+			texture = e_texture;
 		else
-			texture_path = game.config.textures.w_path;
-		*/
-		texture.img = mlx_xpm_file_to_image(vars.mlx, "test.xpm", &texture_x, &texture_y);
+			texture = w_texture;
 		shortest_ray.length = get_distance(player.pos, shortest_ray.pos) * cos(starting_rotation - shortest_ray.rotation);
 		shortest_ray.length = shortest_ray.length < 1 ? 1 : shortest_ray.length;
 		line_height = (GRID_SIZE * win.y) / shortest_ray.length;
 		//line_height = line_height > SCREEN_HEIGHT ? SCREEN_HEIGHT : line_height;
 		line_offset = win.y / 2 - line_height / 2;
-		line_width = (int)round((float)win.x / (float)rays_count);
 	//	printf("<%i %f %f %i>\n", line_width, (float)SCREEN_WIDTH / (float)rays_count, round((float)SCREEN_WIDTH / (float)rays_count), (int)round((float)SCREEN_WIDTH / (float)rays_count));
 		if (color == 0x0000FF00)
 			file_to_image(texture, img, new_vector2(current_ray_number * line_width, line_offset),
 			new_vector2(((float)(shortest_ray.pos.x - shortest_ray.pos.x / (float)GRID_SIZE) / (float)GRID_SIZE * texture_x), 0),
-			new_vector2(line_width, line_height), texture_x, texture_y, 0, win);
+			new_vector2(line_width, line_height), texture_x, texture_y, 0, win, 1);
 		else
 			file_to_image(texture, img, new_vector2(current_ray_number * line_width, line_offset),
 			new_vector2(((shortest_ray.pos.y - shortest_ray.pos.y / (float)GRID_SIZE) / (float)GRID_SIZE * texture_y), 0),
-			new_vector2(line_width, line_height), texture_x, texture_y, 0, win);
+			new_vector2(line_width, line_height), texture_x, texture_y, 0, win, 1);
 		//printf("%i, %i\n", (int)shortest_ray.pos.x, (int)((float)((int)shortest_ray.pos.x % GRID_SIZE) / GRID_SIZE * texture_x));
 		//draw_line(img, player.pos, shortest_ray.pos, 1, color);
 		//draw_rect_filled(img, v_ray.pos, new_vector2(v_ray.pos.x + 10, v_ray.pos.y + 10), 0x000000FF);

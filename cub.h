@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:47:53 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/03 16:40:49 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/03 17:15:59 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define PLAYER_SPEED 5
 # define SKY_COLOR 0x005000C8
 # define FLOOR_COLOR 0x00C0C0C0
-# define RAYS_COUNT 100000
+# define RAYS_COUNT 1<<12
 # include "v_types.h"
 # include <fcntl.h>
 # include "mlx/mlx.h"
@@ -37,7 +37,7 @@ void		cast_rays(t_player player, char **map, t_data *img,
 double		get_distance(t_vector2 start, t_vector2 end);
 int			same_value(double x, double y);
 void		file_to_image(t_data img, t_data *image, t_vector2 coordinates,
-	t_vector2 offset, t_vector2 size, int width, int height, int transparent, t_win win);
+	t_vector2 offset, t_vector2 size, int width, int height, int transparent, t_win win, int const_rays);
 void		draw_sprite(t_data texture, t_game *game, t_vector2 sprite_pos,
 					t_ivector2 sprite_dimensions, t_win win);
 int			create_trgb(int t, int r, int g, int b);

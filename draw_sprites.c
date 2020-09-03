@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:50:25 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/03 13:54:47 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/03 17:10:39 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void			draw_sprite(t_data texture, t_game *game, t_vector2 sprite_pos,
 	sprite_offset.y = game->config.win.y / 2 - sprite_size / 2;
 	file_to_image(texture, &game->img, sprite_offset, new_vector2(0, 0),
 		new_vector2(sprite_size, sprite_size),
-		sprite_dimensions.x, sprite_dimensions.y, 1, win);
+		sprite_dimensions.x, sprite_dimensions.y, 1, win, 0);
 }

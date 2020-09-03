@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 15:22:46 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/03 15:14:01 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/03 16:58:00 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			main(int argc, char **argv)
 		{
 			game.config.map.map[i][j] -= (int)'0';
 			if (game.config.map.map[i][j] == -16)
-				game.config.map.map[i][j] += 16;
+				game.config.map.map[i][j] += 17;
 			printf ("%i ", (int)game.config.map.map[i][j]);
 			++j;
 		}
