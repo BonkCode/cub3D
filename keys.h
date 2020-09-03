@@ -1,18 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keys.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/01 17:00:47 by rtrant            #+#    #+#             */
+/*   Updated: 2020/09/01 17:07:31 by rtrant           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef KEYS_H
 # define KEYS_H
-
-/*
-** char *string = ""
-**	"asdfhgzxcv"		This string has the matching symbol or letter
-**	"bqweryt123"		for the index of the keycode for the key.
-**	"465=97-80]"		if you press KEY_BRACE_R or ]
-**	"ou[ip lj\"k"		You could use string[30] or string[KEY_BRACE_R]
-**	";\\,/nm.  ` "		to access the matching symbol or letter.
-**	"	. * +   "
-**	"/ -  =012345"		If you find anything missing please let me know.
-**	"67 89";
-*/
-
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2

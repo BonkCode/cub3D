@@ -1,0 +1,16 @@
+R 1920                       1080
+
+NO textures.xpm
+SO text.xpm
+WE textures/wal    l_ 3 .xpm
+EA textures/wal   l_4 .xpm
+S  textures/sprit   e_1 .xpm
+
+F 184    ,                    113,   39 
+C 51   ,   198,   255        
+
+111111
+100001
+1000N1
+100001
+111111
