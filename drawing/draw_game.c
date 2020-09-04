@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:04:40 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 17:56:35 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 19:12:34 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void		draw_map(t_game *game)
 
 void		draw_sprites(char **map, t_game *game, t_ivector2 map_size)
 {
-	t_data		texture;
-	t_ivector2	texture_size;
-	t_sprite	*sprites;
-	int			i;
+	t_display_params	params;
+	t_sprite			*sprites;
+	int					i;
 
-	texture.img = mlx_xpm_file_to_image(game->vars.mlx,
-		game->config.textures.i_path, &texture_size.x, &texture_size.y);
+	params.source.img = mlx_xpm_file_to_image(game->vars.mlx,
+		game->config.textures.i_path, &params.source.size.x,
+			&params.source.size.y);
 	if (!(sprites = malloc(sizeof(t_sprite) * game->sprites_count)))
 		return ;
 	setup_sprite_array(map, game, map_size, &sprites);
@@ -89,8 +89,7 @@ void		draw_sprites(char **map, t_game *game, t_ivector2 map_size)
 	}
 	i = -1;
 	while (++i < game->sprites_count)
-		draw_sprite(texture, game, sprites[i].pos,
-			texture_size, game->config.win);
+		draw_sprite(params, game, sprites[i]);
 	free(game->depth_buffer);
 	free(sprites);
 }

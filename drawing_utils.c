@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 17:41:00 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 17:45:19 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 18:17:04 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void	setup_sprite_array(char **map, t_game *game, t_ivector2 map_size,
 		{
 			if (map[pos.y][pos.x] == 2)
 			{
-				(*sprites)[++i].pos = new_vector2(pos.x * GRID_SIZE + GRID_SIZE / 2,
+				(*sprites)[++i].pos = new_vector2(
+							pos.x * GRID_SIZE + GRID_SIZE / 2,
 							pos.y * GRID_SIZE + GRID_SIZE / 2);
-				(*sprites)[i].distance = get_distance(game->player.pos, (*sprites)[i].pos);
+				(*sprites)[i].distance = get_distance(game->player.pos,
+													(*sprites)[i].pos);
 			}
 		}
 	}

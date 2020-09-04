@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:46:12 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 18:02:07 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 19:29:50 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ static void		draw_line_part(t_vector2 pos, t_game *game,
 	}
 }
 
-int				draw_line(t_game *game, t_vector2 start, t_vector2 end, int color)
+int				draw_line(t_game *game, t_vector2 start,
+						t_vector2 end, int color)
 {
 	t_vector2	pos;
 	double		k;

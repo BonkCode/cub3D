@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:02:00 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 17:15:30 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 18:47:43 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	t_ivector2	size;
 }					t_data;
 
 typedef struct		s_player
@@ -106,6 +107,16 @@ typedef struct		s_sprite
 	t_vector2	pos;
 	float		distance;
 }					t_sprite;
+
+typedef struct		s_display_params
+{
+	t_data			source;
+	t_vector2		offset;
+	int				transparent;
+	int				const_x;
+	t_win			win;
+	t_vector2		size;
+}					t_display_params;
 
 typedef struct		s_game
 {

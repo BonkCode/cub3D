@@ -158,8 +158,8 @@ void	cast_rays(t_player player, char **map, t_data *img, int rays_count, t_vars 
 	t_data	s_texture;
 	t_data	w_texture;
 	t_data	e_texture;
-	t_data	texture;
 	int		fov;
+	t_display_params	params;
 
 	fov = win.x < 60 ? win.x : 60;
 	if (!(depth_buffer = malloc(sizeof(int) * rays_count)))
@@ -197,29 +197,30 @@ void	cast_rays(t_player player, char **map, t_data *img, int rays_count, t_vars 
 			color = get_distance(player.pos, h_ray.pos) < get_distance(player.pos, v_ray.pos) ? 0x0000FF00 : 0x000000FF;
 		}
 		if (color == 0x0000FF00 && (player.rotation <= PI && player.rotation >= 0))
-			texture = s_texture;
+			params.source = s_texture;
 		else if (color == 0x0000FF00)
-			texture = n_texture;
+			params.source = n_texture;
 		else if (player.rotation >= PI / 2 & player.rotation <= 3 * PI / 2)
-			texture = e_texture;
+			params.source = e_texture;
 		else
-			texture = w_texture;
+			params.source = w_texture;
 		shortest_ray.length = get_distance(player.pos, shortest_ray.pos) * cos(starting_rotation - shortest_ray.rotation);
 		shortest_ray.length = shortest_ray.length < 1 ? 1 : shortest_ray.length;
 		line_height = (GRID_SIZE * win.y) / shortest_ray.length;
 		line_offset = win.y / 2 - line_height / 2;
-	//	printf("<%i %f %f %i>\n", line_width, (float)SCREEN_WIDTH / (float)rays_count, round((float)SCREEN_WIDTH / (float)rays_count), (int)round((float)SCREEN_WIDTH / (float)rays_count));
 		if (color == 0x0000FF00)
-			file_to_image(texture, img, new_vector2(current_ray_number * line_width, line_offset),
-			new_vector2(((float)(shortest_ray.pos.x - shortest_ray.pos.x / (float)GRID_SIZE) / (float)GRID_SIZE * texture_x), 0),
-			new_vector2(line_width, line_height), texture_x, texture_y, 0, win, 1);
+			params.offset = new_vector2(((shortest_ray.pos.x - shortest_ray.pos.x / (float)GRID_SIZE) / (float)GRID_SIZE * texture_y), 0);
 		else
-			file_to_image(texture, img, new_vector2(current_ray_number * line_width, line_offset),
-			new_vector2(((shortest_ray.pos.y - shortest_ray.pos.y / (float)GRID_SIZE) / (float)GRID_SIZE * texture_y), 0),
-			new_vector2(line_width, line_height), texture_x, texture_y, 0, win, 1);
-		//printf("%i, %i\n", (int)shortest_ray.pos.x, (int)((float)((int)shortest_ray.pos.x % GRID_SIZE) / GRID_SIZE * texture_x));
-		//draw_line(img, player.pos, shortest_ray.pos, color, win);
-		//draw_rect_filled(img, v_ray.pos, new_vector2(v_ray.pos.x + 10, v_ray.pos.y + 10), 0x000000FF);
+			params.offset = new_vector2(((shortest_ray.pos.y - shortest_ray.pos.y / (float)GRID_SIZE) / (float)GRID_SIZE * texture_y), 0);
+		params.transparent = 0;
+		params.const_x = 1;
+		params.win = game->config.win;
+		params.source.size = new_ivector2(texture_x, texture_y);
+		params.size = new_vector2(line_width, line_height);
+		if (color == 0x0000FF00)
+			file_to_image(params, img, new_vector2(current_ray_number * line_width, line_offset));
+		else
+			file_to_image(params, img, new_vector2(current_ray_number * line_width, line_offset));
 		depth_buffer[current_ray_number] = shortest_ray.length;
 		player.rotation -= DR / (rays_count / fov);
 		if (player.rotation > 2 * PI)

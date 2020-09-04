@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:47:53 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 18:02:34 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 19:34:52 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "v_types.h"
 # include <fcntl.h>
 # include "mlx/mlx.h"
-# include "libft/libft.h"
+# include "parsing/libft/libft.h"
 
 t_vector2	new_vector2(double x, double y);
 t_ivector2	new_ivector2(int x, int y);
@@ -40,11 +40,9 @@ void		cast_rays(t_player player, char **map, t_data *img,
 				t_game *game);
 double		get_distance(t_vector2 start, t_vector2 end);
 int			same_value(double x, double y);
-void		file_to_image(t_data img, t_data *image, t_vector2 coordinates,
-	t_vector2 offset, t_vector2 size, int width, int height, int transparent,
-	t_win win, int const_rays);
-void		draw_sprite(t_data texture, t_game *game, t_vector2 sprite_pos,
-					t_ivector2 sprite_dimensions, t_win win);
+void		file_to_image(t_display_params params,
+						t_data *image, t_vector2 coordinates);
+void		draw_sprite(t_display_params params, t_game *game, t_sprite sprite);
 int			create_trgb(int t, int r, int g, int b);
 int			get_t(int trgb);
 int			get_r(int trgb);
