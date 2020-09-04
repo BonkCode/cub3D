@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 16:52:59 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/03 16:22:59 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 15:36:54 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void		parse_resolution(char *line, t_config *config, int *i)
 
 void		texture_path(char *line, char **path, int *i)
 {
-	int		buff;
-	int		j;
-
 	if (*path != NULL)
 		config_error("Error\nYou need to configure textures only once\n");
 	(*i) += 2;

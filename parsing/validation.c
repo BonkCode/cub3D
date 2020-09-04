@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 14:11:04 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/03 14:43:15 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 15:39:36 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	check_borders(t_config *c)
 {
-	int i;
-	int j;
-	int last;
+	size_t	i;
+	int 	j;
+	int	 last;
 
 	i = 0;
 	while (c->map.map[i])

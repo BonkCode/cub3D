@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:06:31 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/03 16:24:18 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 15:51:58 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_vector2	get_new_pos(int key, t_player player)
 {
 	t_vector2	new_pos;
 
+	new_pos = new_vector2(0, 0);
 	if (key == KEY_W)
 		new_pos = new_vector2(
 			player.pos.x + PLAYER_SPEED * cos(player.rotation),
@@ -34,7 +35,7 @@ t_vector2	get_new_pos(int key, t_player player)
 		new_pos = new_vector2(
 			player.pos.x + PLAYER_SPEED * cos(player.rotation + PI / 2),
 			player.pos.y - PLAYER_SPEED * sin(player.rotation + PI / 2));
-	else if (key == KEY_D)
+	else
 		new_pos = new_vector2(
 			player.pos.x - PLAYER_SPEED * cos(player.rotation + PI / 2),
 			player.pos.y + PLAYER_SPEED * sin(player.rotation + PI / 2));
@@ -45,9 +46,9 @@ double		get_new_rotation(int key, t_player player)
 {
 	double	new_rotation;
 
-	if (key == KEY_Q)
+	if (key == KEY_Q || key == KEY_LEFT)
 		new_rotation = player.rotation + .1;
-	else if (key == KEY_E)
+	else
 		new_rotation = player.rotation - .1;
 	return (new_rotation);
 }
@@ -73,7 +74,7 @@ int			move_player(int key, t_game *game)
 	new_pos = new_vector2(game->player.pos.x, game->player.pos.y);
 	if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)
 		new_pos = get_new_pos(key, game->player);
-	else if (key == KEY_Q || key == KEY_E)
+	else if (key == KEY_Q || key == KEY_E || key == KEY_LEFT || key == KEY_RIGHT)
 		game->player.rotation = get_new_rotation(key, game->player);
 	else if (key == KEY_M)
 		game->map_active = game->map_active == 0 ? 1 : 0;

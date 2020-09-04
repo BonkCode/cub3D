@@ -22,8 +22,12 @@ void	file_to_image(t_data img, t_data *image, t_vector2 coordinates, t_vector2 o
 		offset.y -= height;
 	scale = new_vector2(size.x / width, size.y / height); 
 	pos = new_vector2(-1, -1);
+	if (pos.y + coordinates.y < -scale.y)
+		pos.y = -scale.y - coordinates.y;
 	while (++pos.y < size.y)
 	{
+		if (pos.y + coordinates.y > win.y)
+			break;
 		pos.x = -1;
 		while (++pos.x < size.x)
 		{
@@ -33,7 +37,7 @@ void	file_to_image(t_data img, t_data *image, t_vector2 coordinates, t_vector2 o
 			dst = img.addr + ((closest_neighboor.y + (int)offset.y) * img.line_length + (closest_neighboor.x + (int)offset.x) * (img.bits_per_pixel / 8));
 			color = *(unsigned int*)dst;
 			if (get_r(color) > 0 || get_g(color) > 0 || get_b(color) > 0 || transparent == 0)
-				my_mlx_pixel_put(image, (int)pos.x + (int)coordinates.x, (int)pos.y + (int)coordinates.y, color, win);
+				my_mlx_pixel_put(image, new_ivector2((int)pos.x + (int)coordinates.x, (int)pos.y + (int)coordinates.y), color, win);
 		}
 	}
 }

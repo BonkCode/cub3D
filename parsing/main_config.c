@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 17:58:50 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/03 13:44:43 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 16:55:48 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_shit(t_config *config)
 {
 	config->win.x = 0;
 	config->win.y = 0;
+	config->save = 0;
 	config->textures.e_path = NULL;
 	config->textures.i_path = NULL;
 	config->textures.n_path = NULL;

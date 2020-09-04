@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:47:53 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/03 17:15:59 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 18:02:34 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,22 @@
 
 t_vector2	new_vector2(double x, double y);
 t_ivector2	new_ivector2(int x, int y);
-void		draw_rect(t_data *img, t_vector2 start, t_vector2 end, int color, t_win win);
-void		draw_rect_filled(t_data *img, t_vector2 start,
-							t_vector2 end, int color, t_win win);
-int			draw_line(t_data *img, t_vector2 start, t_vector2 end, int color, t_win win);
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color, t_win win);
+void		draw_rect(t_game *game, t_vector2 start, t_vector2 end,
+			int color);
+void		draw_rect_filled(t_game *game, t_vector2 start,
+							t_vector2 end, int color);
+int			draw_line(t_game *game, t_vector2 start, t_vector2 end,
+			int color);
+void		my_mlx_pixel_put(t_data *data, t_ivector2 pos,
+			int color, t_win win);
 void		cast_rays(t_player player, char **map, t_data *img,
-				int rays_count, t_vars vars, t_win win, t_ivector2 map_size, t_game game);
+				int rays_count, t_vars vars, t_win win, t_ivector2 map_size,
+				t_game *game);
 double		get_distance(t_vector2 start, t_vector2 end);
 int			same_value(double x, double y);
 void		file_to_image(t_data img, t_data *image, t_vector2 coordinates,
-	t_vector2 offset, t_vector2 size, int width, int height, int transparent, t_win win, int const_rays);
+	t_vector2 offset, t_vector2 size, int width, int height, int transparent,
+	t_win win, int const_rays);
 void		draw_sprite(t_data texture, t_game *game, t_vector2 sprite_pos,
 					t_ivector2 sprite_dimensions, t_win win);
 int			create_trgb(int t, int r, int g, int b);
@@ -46,13 +51,14 @@ int			get_r(int trgb);
 int			get_g(int trgb);
 int			get_b(int trgb);
 int			draw_frame(t_game *game);
-void		draw_skybox(t_data *img, t_win win);
-void		draw_sprites(char **map, t_game game, t_ivector2 map_size);
 t_vector2	get_new_pos(int key, t_player player);
 double		get_new_rotation(int key, t_player player);
 int			no_potential_collosion(char **map, t_vector2 new_pos);
 int			move_player(int key, t_game *game);
-
+void		save_bmp(int width, int height, char *data);
+void		swap_sprites(t_sprite *a, t_sprite *b);
+void		setup_sprite_array(char **map, t_game *game, t_ivector2 map_size,
+	t_sprite **sprites);
 
 void		make_config(int argc, char **argv, t_game *game);
 void		validate_config(t_game *game);

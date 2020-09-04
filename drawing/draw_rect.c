@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:28:43 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/03 15:20:21 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 17:51:10 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "v_types.h"
 #include "cub.h"
 
-void	draw_rect(t_data *img, t_vector2 start, t_vector2 end, int color, t_win win)
+void	draw_rect(t_game *game, t_vector2 start, t_vector2 end, int color)
 {
 	t_vector2	pos;
 	t_vector2	min;
@@ -26,16 +26,21 @@ void	draw_rect(t_data *img, t_vector2 start, t_vector2 end, int color, t_win win
 	max.y = start.y > end.y ? start.y : end.y;
 	pos = new_vector2(min.x, min.y);
 	while (pos.x < max.x)
-		my_mlx_pixel_put(img, pos.x++, pos.y, color, win);
+		my_mlx_pixel_put(&game->img, new_ivector2(pos.x++, pos.y),
+			color, game->config.win);
 	while (pos.y < max.y)
-		my_mlx_pixel_put(img, pos.x, pos.y++, color, win);
+		my_mlx_pixel_put(&game->img, new_ivector2(pos.x, pos.y++),
+			color, game->config.win);
 	while (pos.x > min.x)
-		my_mlx_pixel_put(img, pos.x--, pos.y, color, win);
+		my_mlx_pixel_put(&game->img, new_ivector2(pos.x--, pos.y),
+			color, game->config.win);
 	while (pos.y > min.y)
-		my_mlx_pixel_put(img, pos.x, pos.y--, color, win);
+		my_mlx_pixel_put(&game->img, new_ivector2(pos.x, pos.y--),
+			color, game->config.win);
 }
 
-void	draw_rect_filled(t_data *img, t_vector2 start, t_vector2 end, int color, t_win win)
+void	draw_rect_filled(t_game *game, t_vector2 start,
+						t_vector2 end, int color)
 {
 	t_vector2	pos;
 	t_vector2	min;
@@ -51,7 +56,8 @@ void	draw_rect_filled(t_data *img, t_vector2 start, t_vector2 end, int color, t_
 		pos.x = min.x;
 		while (pos.x < max.x)
 		{
-			my_mlx_pixel_put(img, pos.x, pos.y, color, win);
+			my_mlx_pixel_put(&game->img, new_ivector2(pos.x, pos.y),
+				color, game->config.win);
 			++pos.x;
 		}
 		++pos.y;

@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 15:22:46 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/03 16:58:00 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/04 16:55:03 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,22 @@ int			main(int argc, char **argv)
 	t_game		game;
 	int			line_width;
 	t_ivector2	screen_size;
-	int i = 0;
-	int j = 0;
+	size_t i = 0;
+	size_t j = 0;
 
 	game.map_active = 0;
 	game.rays_count = RAYS_COUNT;
 	make_config(argc, argv, &game);
 	validate_config(&game);
+	game.sprites_count = 0;
 	while (i < game.config.map.rows)
 	{
 		j = 0;
 		while (j < game.config.map.m)
 		{
 			game.config.map.map[i][j] -= (int)'0';
+			if (game.config.map.map[i][j] == 2)
+				++game.sprites_count;
 			if (game.config.map.map[i][j] == -16)
 				game.config.map.map[i][j] += 17;
 			printf ("%i ", (int)game.config.map.map[i][j]);
@@ -69,6 +72,12 @@ int			main(int argc, char **argv)
 	//printf ("", );
 	game.vars.win = mlx_new_window(game.vars.mlx, screen_size.x,
 								game.config.win.y, "Bonk");
+	if (game.config.save)
+	{
+		draw_frame(&game);
+		save_bmp(game.config.win.x, game.config.win.y, game.img.addr);
+		exit(0);
+	}
 	mlx_loop_hook(game.vars.mlx, draw_frame, &game);
 	mlx_hook(game.vars.win, KEY_PRESS, KEY_PRESS_MASK, move_player, &game);
 	mlx_hook(game.vars.win, DESTROY_NOTIFY, STRUCTURE_NOTIFY_MASK,
