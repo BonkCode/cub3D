@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:02:00 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 18:47:43 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/06 16:49:56 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,27 @@ typedef struct		s_textures
 	char *e_path;
 	char *i_path;
 }					t_textures;
+
+typedef struct		s_texture_v4
+{
+	t_data	n;
+	t_data	s;
+	t_data	w;
+	t_data	e;
+}					t_texture_v4;
+
+typedef struct		s_raycasting_params
+{
+	double				starting_rotation;
+	double				current_rotation;
+	float				line_height;
+	float				line_offset;
+	int					current_ray_number;
+	int					color;
+	int					line_width;
+	int					fov;
+	t_texture_v4		textures;
+}					t_raycasting_params;
 
 typedef	struct		s_player_pos
 {

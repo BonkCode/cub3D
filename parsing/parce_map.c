@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:59:52 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/03 13:45:20 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:32:56 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		get_map(t_config *con, char *line)
 		config_error("Error\nInvalid map\n");
 }
 
-void	feel_map_with_love(t_config *conf)
+void		feel_map_with_love(t_config *conf)
 {
 	int i;
 	int j;

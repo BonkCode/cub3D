@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:04:40 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 19:12:34 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:33:13 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,7 @@ int			draw_frame(t_game *game)
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
 									&game->img.line_length, &game->img.endian);
 	draw_skybox(game->config.win, game);
-	cast_rays(game->player, game->config.map.map, &(game->img),
-		game->rays_count, game->vars, game->config.win,
-		new_ivector2(game->config.map.m, game->config.map.rows), game);
+	cast_rays(game->player, game->rays_count, game);
 	if (game->map_active)
 	{
 		draw_player(game);

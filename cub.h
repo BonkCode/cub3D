@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:47:53 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 19:34:52 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:30:19 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 t_vector2	new_vector2(double x, double y);
 t_ivector2	new_ivector2(int x, int y);
+double		local_abs(double x);
 void		draw_rect(t_game *game, t_vector2 start, t_vector2 end,
 			int color);
 void		draw_rect_filled(t_game *game, t_vector2 start,
@@ -35,9 +36,25 @@ int			draw_line(t_game *game, t_vector2 start, t_vector2 end,
 			int color);
 void		my_mlx_pixel_put(t_data *data, t_ivector2 pos,
 			int color, t_win win);
-void		cast_rays(t_player player, char **map, t_data *img,
-				int rays_count, t_vars vars, t_win win, t_ivector2 map_size,
-				t_game *game);
+void		cast_rays(t_player player, int rays_count, t_game *game);
+t_ray		cast_v_rays(t_player player, char **map, t_ivector2 map_size);
+t_ray		cast_h_rays(t_player player, char **map, t_ivector2 map_size);
+void		init_textures(t_game *game, t_texture_v4 *textures);
+void		update_ray_rotation(int rays_count,
+		t_raycasting_params rc_params, t_player *player);
+void		setup_drawing_params(t_display_params *drawing_params,
+		t_ray shortest_ray, t_raycasting_params rc_params, t_game *game);
+void		init_raycasting(t_game *game, t_player *player,
+				t_raycasting_params *params, int rays_count);
+void		get_texture_params(t_display_params *drawing_params,
+								t_data texture);
+t_ray		get_s_ray(t_player player, t_game *game,
+				t_raycasting_params *raycasting_params);
+void		get_texture(t_raycasting_params rc_params,
+			t_display_params *drawing_params, t_player player);
+void		get_drawing_params_offset(t_raycasting_params rc_params,
+				t_display_params *drawing_params, t_ray shortest_ray);
+void		stop_casting(t_ray *ray, t_player player, int *dof);
 double		get_distance(t_vector2 start, t_vector2 end);
 int			same_value(double x, double y);
 void		file_to_image(t_display_params params,
@@ -57,6 +74,7 @@ void		save_bmp(int width, int height, char *data);
 void		swap_sprites(t_sprite *a, t_sprite *b);
 void		setup_sprite_array(char **map, t_game *game, t_ivector2 map_size,
 	t_sprite **sprites);
+int			exit_game(void);
 
 void		make_config(int argc, char **argv, t_game *game);
 void		validate_config(t_game *game);

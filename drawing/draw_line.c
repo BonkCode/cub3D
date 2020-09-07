@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:46:12 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 19:29:50 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:16:45 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ static void		swap_v2(t_vector2 *a, t_vector2 *b)
 	a->y = b->y;
 	b->x = buffer.x;
 	b->y = buffer.y;
-}
-
-static double	local_abs(double x)
-{
-	return (x > 0 ? x : -x);
 }
 
 static int		draw_vert_line(t_game *game, t_vector2 start, t_vector2 end,

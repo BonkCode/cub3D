@@ -6,13 +6,13 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 14:44:35 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/03 13:45:22 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/06 17:33:28 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int		skip_spaces(char *line, int *i)
+int			skip_spaces(char *line, int *i)
 {
 	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')
 		|| (line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))
@@ -20,7 +20,7 @@ int		skip_spaces(char *line, int *i)
 	return (1);
 }
 
-int		ft_atoi_cub3d(char *line, int *i)
+int			ft_atoi_cub3d(char *line, int *i)
 {
 	int		num;
 
@@ -53,7 +53,7 @@ char		*ft_strdup_cub3d(char *str)
 	return (dest);
 }
 
-int		check_extension(char *filename, char *extension)
+int			check_extension(char *filename, char *extension)
 {
 	int		i;
 
@@ -68,7 +68,7 @@ int		check_extension(char *filename, char *extension)
 	return (0);
 }
 
-int		is_space(int c)
+int			is_space(int c)
 {
 	if (c == '\t' || c == '\n' || c == '\r'
 		|| c == '\v' || c == '\f' || c == ' ')

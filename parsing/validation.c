@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 14:11:04 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/04 15:39:36 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/06 16:44:53 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	check_borders(t_config *c)
 {
 	size_t	i;
-	int 	j;
-	int	 last;
+	int		j;
+	int		last;
 
 	i = 0;
 	while (c->map.map[i])
@@ -52,7 +52,7 @@ void	check_map_cells(char **map, int rows, int cols)
 		j = 1;
 		while (map[i][j] && j < cols - 1)
 		{
-			if (map[i][j] == '0' || map[i][j] == 'N'
+			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == '2'
 				|| map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
 			{
 				if (map[i][j - 1] == ' ' || map[i][j + 1] == ' '
