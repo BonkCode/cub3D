@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 17:17:11 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/06 17:29:07 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:05:41 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			init_raycasting(t_game *game, t_player *player,
 {
 	params->fov = game->config.win.x < 60 ? game->config.win.x : 60;
 	if (!(game->depth_buffer = malloc(sizeof(int) * rays_count)))
-		return ;
+		game_exit(20, game);
 	params->starting_rotation = game->player.rotation;
 	player->rotation += params->fov / 2 * DR;
 	if (player->rotation > 2 * PI)

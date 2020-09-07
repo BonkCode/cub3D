@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 15:22:46 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/07 14:19:23 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:35:27 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ static void	convert_map_to_i(char ***map, size_t height,
 
 static void	init_game(t_game *game)
 {
-	game->vars.win = mlx_new_window(game->vars.mlx, game->config.win.x,
-								game->config.win.y, "Bonk");
+	game->vars.win = NULL;
+	if (!(game->vars.win = mlx_new_window(game->vars.mlx, game->config.win.x,
+								game->config.win.y, "Bonk")))
+		game_exit(11, game);
 	game->map_active = 0;
 	game->rays_count = RAYS_COUNT;
 	game->player.pos = new_vector2(
@@ -53,6 +55,7 @@ static void	init_game(t_game *game)
 	game->config.player.y * GRID_SIZE + (float)GRID_SIZE / 2);
 	game->img.img = NULL;
 	game->player.rotation = game->config.player.dir;
+	game->player.run = 0;
 }
 
 static void	setup_hooks(t_game *game)
@@ -60,14 +63,14 @@ static void	setup_hooks(t_game *game)
 	mlx_loop_hook(game->vars.mlx, draw_frame, game);
 	mlx_hook(game->vars.win, KEY_PRESS, KEY_PRESS_MASK, move_player, game);
 	mlx_hook(game->vars.win, DESTROY_NOTIFY, STRUCTURE_NOTIFY_MASK,
-			exit_game, game);
+			cross_exit, game);
 }
 
 static void	make_screenshot(t_game *game)
 {
 	draw_frame(game);
 	save_bmp(game->config.win.x, game->config.win.y, game->img.addr);
-	exit(0);
+	game_exit(0, game);
 }
 
 int			main(int argc, char **argv)
@@ -76,9 +79,11 @@ int			main(int argc, char **argv)
 	int			line_width;
 	t_ivector2	screen_size;
 
-	game.vars.mlx = mlx_init();
+	game.vars.mlx = NULL;
 	make_config(argc, argv, &game);
 	validate_config(&game);
+	if (!(game.vars.mlx = mlx_init()))
+		game_exit(11, &game);
 	init_game(&game);
 	convert_map_to_i(&game.config.map.map, game.config.map.rows,
 					game.config.map.m, &game.sprites_count);

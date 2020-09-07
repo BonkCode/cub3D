@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:00:47 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/01 17:07:31 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:32:28 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@
 # define KEY_RIGHT 124
 # define KEY_DOWN 125
 # define KEY_UP 126
+# define KEY_SHIFT 257
 #endif

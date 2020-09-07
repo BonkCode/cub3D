@@ -6,7 +6,7 @@
 #    By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/01 17:01:13 by rtrant            #+#    #+#              #
-#    Updated: 2020/09/07 14:10:14 by rtrant           ###   ########.fr        #
+#    Updated: 2020/09/07 16:19:05 by rtrant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,9 @@ SRCS = 	drawing/draw_rect.c \
 		raycasting/drawing_params_setup.c \
 		raycasting/stop_raycasting.c \
 		vector_funcs/vector2.c \
+		game_exit/config_exit.c \
+		game_exit/game_exit.c \
+		game_exit/game_exit_utils.c \
 		main.c \
 		colors.c \
 		distance.c \

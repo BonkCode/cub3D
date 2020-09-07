@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 17:16:09 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/06 17:37:52 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 15:14:31 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,3 @@ int				same_value(double x, double y)
 	return (0);
 }
 
-int				exit_game(void)
-{
-	exit(0);
-}

@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 17:58:50 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/07 14:24:17 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:04:05 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,8 @@ void		make_config(int argc, char **argv, t_game *game)
 		parse_file(argv[1], &game->config);
 	if (argc == 3)
 		parse_file(argv[2], &game->config);
-	game->vars.mlx = mlx_init();
-	if (!game->vars.mlx)
-		config_error("Error\nFailed to init mlx\n");
 	if (!game->config.map.map)
-		config_error("Error\nMap was not specifed\n");
+		game_exit(7, game);
 }
 
 void		validate_config(t_game *game)
@@ -56,7 +53,7 @@ void		validate_config(t_game *game)
 	check_window_resolution(game);
 	check_borders(&game->config);
 	check_map_cells(game->config.map.map, game->config.map.rows,
-					game->config.map.m);
+					game->config.map.m, &game->config);
 	get_player_pos(&game->config, game->config.map.map,
 					game->config.map.rows, game->config.map.m);
 	final_validation(&game->config);

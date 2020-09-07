@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:04:40 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/07 14:25:27 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:05:02 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,6 @@
 #include "cub.h"
 #include <stdio.h>
 #include "v_types.h"
-
-static void	draw_player(t_game *game)
-{
-	t_vector2	start;
-	t_vector2	end;
-	t_vector2	view_vector;
-	int			player_color;
-	int			ray_color;
-
-	start = new_vector2((int)game->player.pos.x - PLAYER_SIZE / 2,
-						(int)game->player.pos.y - PLAYER_SIZE / 2);
-	end = new_vector2((int)game->player.pos.x + PLAYER_SIZE / 2,
-					(int)game->player.pos.y + PLAYER_SIZE / 2);
-	player_color = 0x0000FF00;
-	ray_color = 0x00FF0000;
-	view_vector = new_vector2(
-		game->player.pos.x + 20 * cos(game->player.rotation),
-		game->player.pos.y - 20 * sin(game->player.rotation));
-	draw_rect_filled(game, start, end, player_color);
-	draw_line(game, game->player.pos, view_vector, ray_color);
-}
 
 static void	draw_map(t_game *game)
 {
@@ -76,7 +55,7 @@ static void	draw_sprites(char **map, t_game *game, t_ivector2 map_size)
 		game->config.textures.i_path, &params.source.size.x,
 			&params.source.size.y);
 	if (!(sprites = malloc(sizeof(t_sprite) * game->sprites_count)))
-		return ;
+		game_exit(20, game);
 	setup_sprite_array(map, game, map_size, &sprites);
 	i = -1;
 	while (++i < game->sprites_count - 1)

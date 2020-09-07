@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:06:31 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/07 14:19:55 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:38:39 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,27 @@
 #include "keys.h"
 #include <stdio.h>
 
-static t_vector2	get_new_pos(int key, t_player player)
+static t_vector2	get_new_pos(int key, t_player p)
 {
 	t_vector2	new_pos;
 
 	new_pos = new_vector2(0, 0);
 	if (key == KEY_W)
 		new_pos = new_vector2(
-			player.pos.x + PLAYER_SPEED * cos(player.rotation),
-			player.pos.y - PLAYER_SPEED * sin(player.rotation));
+			p.pos.x + (PLAYER_SPEED + p.run * 5) * cos(p.rotation),
+			p.pos.y - (PLAYER_SPEED + p.run * 5) * sin(p.rotation));
 	else if (key == KEY_S)
 		new_pos = new_vector2(
-			player.pos.x - PLAYER_SPEED * cos(player.rotation),
-			player.pos.y + PLAYER_SPEED * sin(player.rotation));
+			p.pos.x - (PLAYER_SPEED + p.run * 5) * cos(p.rotation),
+			p.pos.y + (PLAYER_SPEED + p.run * 5) * sin(p.rotation));
 	else if (key == KEY_A)
 		new_pos = new_vector2(
-			player.pos.x + PLAYER_SPEED * cos(player.rotation + PI / 2),
-			player.pos.y - PLAYER_SPEED * sin(player.rotation + PI / 2));
+			p.pos.x + (PLAYER_SPEED + p.run * 5) * cos(p.rotation + PI / 2),
+			p.pos.y - (PLAYER_SPEED + p.run * 5) * sin(p.rotation + PI / 2));
 	else
 		new_pos = new_vector2(
-			player.pos.x - PLAYER_SPEED * cos(player.rotation + PI / 2),
-			player.pos.y + PLAYER_SPEED * sin(player.rotation + PI / 2));
+			p.pos.x - (PLAYER_SPEED + p.run * 5) * cos(p.rotation + PI / 2),
+			p.pos.y + (PLAYER_SPEED + p.run * 5) * sin(p.rotation + PI / 2));
 	return (new_pos);
 }
 
@@ -71,21 +71,21 @@ int					move_player(int key, t_game *game)
 {
 	t_vector2	new_pos;
 
+	printf("%i\n", key);
 	new_pos = new_vector2(game->player.pos.x, game->player.pos.y);
 	if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)
 		new_pos = get_new_pos(key, game->player);
 	else if (key == KEY_Q || key == KEY_E ||
 			key == KEY_LEFT || key == KEY_RIGHT)
 		game->player.rotation = get_new_rotation(key, game->player);
+	else if (key == KEY_SHIFT)
+		game->player.run = game->player.run == 0 ? 1 : 0;
 	else if (key == KEY_M)
 		game->map_active = game->map_active == 0 ? 1 : 0;
 	else if (key == KEY_ESC)
-		exit(0);
+		game_exit(0, game);
 	else
-	{
-		draw_frame(game);
-		return (0);
-	}
+		return (draw_frame(game));
 	if (game->player.rotation > 2 * PI)
 		game->player.rotation -= 2 * PI;
 	else if (game->player.rotation < 0)

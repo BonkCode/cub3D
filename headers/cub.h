@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:47:53 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/07 14:21:21 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:30:01 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define GRID_SIZE_Y 25
 # define GRID_SIZE 25
 # define PLAYER_SIZE 10
-# define PLAYER_SPEED 5
+# define PLAYER_SPEED 1
 # define SKY_COLOR 0x005000C8
 # define FLOOR_COLOR 0x00C0C0C0
 # define RAYS_COUNT 1<<12
@@ -71,7 +71,9 @@ void		save_bmp(int width, int height, char *data);
 void		swap_sprites(t_sprite *a, t_sprite *b);
 void		setup_sprite_array(char **map, t_game *game, t_ivector2 map_size,
 	t_sprite **sprites);
-int			exit_game(void);
+void		game_exit(int exit_code, t_game *game);
+int			cross_exit(t_game *game);
+void		config_exit(int exit_code, t_config *config);
 
 void		make_config(int argc, char **argv, t_game *game);
 void		validate_config(t_game *game);
@@ -79,17 +81,17 @@ char		*ft_strdup_cub3d(char *str);
 void		check_args(int argc, char **argv, t_config *config);
 int			is_space(int c);
 int			check_extension(char *filename, char *extension);
-int			check_file(char *filename);
+int			check_file(char *filename, t_config *config);
 int			skip_spaces(char *line, int *i);
 int			ft_atoi_cub3d(char *line, int *i);
 int			parse_file(char *filename, t_config *config);
-void		get_color(char *line, unsigned int *color, int *i);
+void		get_color(char *line, unsigned int *color, int *i, t_config *config);
 void		parse_resolution(char *line, t_config *config, int *i);
-void		texture_path(char *line, char **path, int *i);
+void		texture_path(char *line, char **path, int *i, t_config *config);
 void		get_map(t_config *s, char *line);
 void		config_error(char *message);
 void		check_borders(t_config *config);
-void		check_map_cells(char **map, int rows, int cols);
+void		check_map_cells(char **map, int rows, int cols, t_config *config);
 void		fill_map(t_config *conf);
 void		get_player_pos(t_config *con, char **map, int rows, int cols);
 void		check_window_resolution(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:02:00 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/06 16:49:56 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:35:18 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_player
 {
 	t_vector2	pos;
 	double		rotation;
+	int			run;
 }					t_player;
 
 typedef struct		s_ray

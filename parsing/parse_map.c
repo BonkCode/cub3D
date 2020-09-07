@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:59:52 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/07 14:16:41 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 16:00:21 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ void		get_map(t_config *con, char *line)
 	int		j;
 
 	if (!(tmp = malloc(sizeof(char *) * (con->map.y + 2))))
-		config_error("Error\nError while saving map.");
+		config_exit(20, con);
 	j = -1;
 	while (++j < con->map.y)
 		tmp[j] = con->map.map[j];
 	if ((tmp[con->map.y] = copy_map_line(con, line)) == NULL)
 	{
 		free(tmp);
-		config_error("Error\nInvalid map\n");
+		config_exit(21, con);
 	}
 	con->map.rows += 1;
 	con->map.m = ft_strlen(line) > con->map.m ? ft_strlen(line) : con->map.m;
@@ -81,7 +81,7 @@ void		get_map(t_config *con, char *line)
 	con->map.map = tmp;
 	con->map.y++;
 	if ((con->map.x = get_map_len(con, line)) == -1)
-		config_error("Error\nInvalid map\n");
+		config_exit(21, con);
 }
 
 void		fill_map(t_config *conf)
@@ -95,7 +95,8 @@ void		fill_map(t_config *conf)
 	{
 		while (ft_strlen(conf->map.map[i]) < conf->map.m)
 		{
-			conf->map.map[i] = ft_strjoin_gnl(conf->map.map[i], " ");
+			if (!(conf->map.map[i] = ft_strjoin_gnl(conf->map.map[i], " ")))
+				config_exit(20, conf);
 		}
 		i++;
 	}
