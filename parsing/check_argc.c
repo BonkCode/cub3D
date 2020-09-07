@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 15:20:24 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/06 13:55:01 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:06:45 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		check_file(char *filename)
 	res = 1;
 	fd = open(filename, O_RDONLY);
 	if (fd < 1)
-		config_error("Error\nMap doesn't exists\n");
+		config_error("Error\nFile doesn't exists\n");
 	close(fd);
 	return (res);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_map.c                                        :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:59:52 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/06 17:32:56 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:16:41 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int			get_map_len(t_config *config, char *line)
+static int		get_map_len(t_config *config, char *line)
 {
 	int		i;
 	int		count;
@@ -32,7 +32,7 @@ int			get_map_len(t_config *config, char *line)
 	return (count);
 }
 
-char		*copy_map_line(t_config *config, char *line)
+static char		*copy_map_line(t_config *config, char *line)
 {
 	char	*copy;
 	int		j;
@@ -84,7 +84,7 @@ void		get_map(t_config *con, char *line)
 		config_error("Error\nInvalid map\n");
 }
 
-void		feel_map_with_love(t_config *conf)
+void		fill_map(t_config *conf)
 {
 	int i;
 	int j;

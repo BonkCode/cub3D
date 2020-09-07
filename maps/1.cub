@@ -1,10 +1,10 @@
 R 1111111                       111111
 
-NO brick.xpm
-SO hitler.xpm
-WE wood.xpm
-EA banner.xpm
-S  chest.xpm
+NO textures/brick.xpm
+SO textures/hitler.xpm
+WE textures/wood.xpm
+EA textures/banner.xpm
+S  textures/chest.xpm
 
 F 184    ,                    113,   39 
 C 51   ,   198,   255          

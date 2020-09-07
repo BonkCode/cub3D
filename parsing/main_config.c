@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 17:58:50 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/06 17:32:35 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:24:17 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "mlx.h"
 
-void	init_shit(t_config *config)
+static void	init_config(t_config *config)
 {
 	config->win.x = 0;
 	config->win.y = 0;
@@ -33,12 +33,11 @@ void	init_shit(t_config *config)
 	config->map.m = 0;
 	config->player.x = 0;
 	config->player.y = 0;
-	config->win.win = NULL;
 }
 
-void	make_config(int argc, char **argv, t_game *game)
+void		make_config(int argc, char **argv, t_game *game)
 {
-	init_shit(&game->config);
+	init_config(&game->config);
 	check_args(argc, argv, &game->config);
 	if (argc == 2)
 		parse_file(argv[1], &game->config);
@@ -51,9 +50,9 @@ void	make_config(int argc, char **argv, t_game *game)
 		config_error("Error\nMap was not specifed\n");
 }
 
-void	validate_config(t_game *game)
+void		validate_config(t_game *game)
 {
-	feel_map_with_love(&game->config);
+	fill_map(&game->config);
 	check_window_resolution(game);
 	check_borders(&game->config);
 	check_map_cells(game->config.map.map, game->config.map.rows,

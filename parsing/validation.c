@@ -6,13 +6,13 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 14:11:04 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/06 16:44:53 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:17:49 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	check_borders(t_config *c)
+void		check_borders(t_config *c)
 {
 	size_t	i;
 	int		j;
@@ -41,7 +41,7 @@ void	check_borders(t_config *c)
 	}
 }
 
-void	check_map_cells(char **map, int rows, int cols)
+void		check_map_cells(char **map, int rows, int cols)
 {
 	int i;
 	int	j;
@@ -65,7 +65,7 @@ void	check_map_cells(char **map, int rows, int cols)
 	}
 }
 
-void	define_player_dir(t_config *con, char c)
+static void	define_player_dir(t_config *con, char c)
 {
 	if (c == 'N')
 		con->player.dir = PI / 2;
@@ -77,7 +77,7 @@ void	define_player_dir(t_config *con, char c)
 		con->player.dir = PI;
 }
 
-void	get_player_pos(t_config *con, char **map, int rows, int cols)
+void		get_player_pos(t_config *con, char **map, int rows, int cols)
 {
 	int i;
 	int j;
@@ -106,7 +106,7 @@ void	get_player_pos(t_config *con, char **map, int rows, int cols)
 	}
 }
 
-void	check_window_resolution(t_game *game)
+void		check_window_resolution(t_game *game)
 {
 	int size_x;
 	int size_y;

@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:47:53 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/06 17:30:19 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:21:21 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int			get_r(int trgb);
 int			get_g(int trgb);
 int			get_b(int trgb);
 int			draw_frame(t_game *game);
-t_vector2	get_new_pos(int key, t_player player);
-double		get_new_rotation(int key, t_player player);
-int			no_potential_collosion(char **map, t_vector2 new_pos);
 int			move_player(int key, t_game *game);
 void		save_bmp(int width, int height, char *data);
 void		swap_sprites(t_sprite *a, t_sprite *b);
@@ -93,7 +90,7 @@ void		get_map(t_config *s, char *line);
 void		config_error(char *message);
 void		check_borders(t_config *config);
 void		check_map_cells(char **map, int rows, int cols);
-void		feel_map_with_love(t_config *conf);
+void		fill_map(t_config *conf);
 void		get_player_pos(t_config *con, char **map, int rows, int cols);
 void		check_window_resolution(t_game *game);
 void		final_validation(t_config *c);

@@ -6,16 +6,38 @@
 #    By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/01 17:01:13 by rtrant            #+#    #+#              #
-#    Updated: 2020/09/06 17:28:39 by rtrant           ###   ########.fr        #
+#    Updated: 2020/09/07 14:10:14 by rtrant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c colors.c drawing/draw_rect.c vector_funcs/vector2.c \
-drawing/draw_line.c drawing/my_mlx_pixel_put.c \
-raycast.c distance.c file_to_image.c draw_sprites.c drawing/draw_game.c \
-movement.c parsing/main_config.c parsing/check_argc.c parsing/parse.c parsing/parse_utils.c parsing/parce_line.c parsing/parce_map.c \
-parsing/config_error.c parsing/validation.c parsing/final_validation.c screenshot.c drawing_utils.c utils.c raycast_get_funcs.c drawing_params_setup.c stop_raycasting.c
-CFLAGS			= -O3 -I. -Wall -Wextra -Werror -Iparsing -Imlx -Iparsing/libft
+SRCS = 	drawing/draw_rect.c \
+		drawing/draw_line.c \
+		drawing/my_mlx_pixel_put.c \
+		drawing/file_to_image.c \
+		drawing/draw_sprites.c \
+		drawing/draw_game.c \
+		drawing/drawing_utils.c \
+		parsing/main_config.c \
+		parsing/check_argc.c \
+		parsing/parse.c \
+		parsing/parse_utils.c \
+		parsing/parse_line.c \
+		parsing/parse_map.c \
+		parsing/config_error.c \
+		parsing/validation.c \
+		parsing/final_validation.c \
+		raycasting/raycast.c \
+		raycasting/raycast_get_funcs.c \
+		raycasting/drawing_params_setup.c \
+		raycasting/stop_raycasting.c \
+		vector_funcs/vector2.c \
+		main.c \
+		colors.c \
+		distance.c \
+		movement.c \
+		screenshot.c \
+		utils.c
+CFLAGS			= -O3 -I. -Iparsing -Imlx -Iparsing/libft -Iheaders
 CC				= gcc
 MLX				= libmlx.dylib
 LIBS			= -lmlx -framework OpenGL -framework AppKit -lm libft.a libmlx.dylib
@@ -24,7 +46,7 @@ NAME			= cub3D
 
 all:			$(NAME)
 
-$(NAME):		$(MLX) $(OBJS) $(LIBFT)
+$(NAME):		$(MLX) $(LIBFT)
 				gcc ${CFLAGS} -o ${NAME} ${SRCS} ${LIBS}
 
 $(LIBFT):
@@ -37,10 +59,10 @@ $(MLX):
 
 clean:
 				$(MAKE) -C mlx clean
-				$(RM) $(OBJS) $(BONUS_OBJS)
+				$(MAKE) -C parsing/libft clean
 
 fclean:			clean
-				rm -f $(NAME)
+				rm -f $(NAME) $(MLX) $(LIBFT)
 
 re:				fclean $(NAME)
 

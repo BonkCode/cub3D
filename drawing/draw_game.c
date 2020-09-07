@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:04:40 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/06 17:33:13 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:25:27 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include "v_types.h"
 
-void		draw_player(t_game *game)
+static void	draw_player(t_game *game)
 {
 	t_vector2	start;
 	t_vector2	end;
@@ -37,7 +37,7 @@ void		draw_player(t_game *game)
 	draw_line(game, game->player.pos, view_vector, ray_color);
 }
 
-void		draw_map(t_game *game)
+static void	draw_map(t_game *game)
 {
 	t_ivector2	pos;
 	t_vector2	start;
@@ -66,7 +66,7 @@ void		draw_map(t_game *game)
 	}
 }
 
-void		draw_sprites(char **map, t_game *game, t_ivector2 map_size)
+static void	draw_sprites(char **map, t_game *game, t_ivector2 map_size)
 {
 	t_display_params	params;
 	t_sprite			*sprites;
@@ -94,7 +94,7 @@ void		draw_sprites(char **map, t_game *game, t_ivector2 map_size)
 	free(sprites);
 }
 
-void		draw_skybox(t_win win, t_game *game)
+static void	draw_skybox(t_win win, t_game *game)
 {
 	t_vector2	sky_start;
 	t_vector2	sky_end;
@@ -120,10 +120,7 @@ int			draw_frame(t_game *game)
 	draw_skybox(game->config.win, game);
 	cast_rays(game->player, game->rays_count, game);
 	if (game->map_active)
-	{
-		draw_player(game);
 		draw_map(game);
-	}
 	draw_sprites(game->config.map.map, game,
 		new_ivector2(game->config.map.m, game->config.map.rows));
 	mlx_do_sync(game->vars.mlx);

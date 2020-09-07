@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 17:06:31 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 19:51:29 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:19:55 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "keys.h"
 #include <stdio.h>
 
-t_vector2	get_new_pos(int key, t_player player)
+static t_vector2	get_new_pos(int key, t_player player)
 {
 	t_vector2	new_pos;
 
@@ -42,7 +42,7 @@ t_vector2	get_new_pos(int key, t_player player)
 	return (new_pos);
 }
 
-double		get_new_rotation(int key, t_player player)
+static double		get_new_rotation(int key, t_player player)
 {
 	double	new_rotation;
 
@@ -53,7 +53,7 @@ double		get_new_rotation(int key, t_player player)
 	return (new_rotation);
 }
 
-int			no_potential_collosion(char **map, t_vector2 new_pos)
+static int			no_potential_collosion(char **map, t_vector2 new_pos)
 {
 	if ((map[(int)(new_pos.y / GRID_SIZE)]
 			[(int)((new_pos.x - 1) / GRID_SIZE)] != 1) &&
@@ -67,7 +67,7 @@ int			no_potential_collosion(char **map, t_vector2 new_pos)
 	return (0);
 }
 
-int			move_player(int key, t_game *game)
+int					move_player(int key, t_game *game)
 {
 	t_vector2	new_pos;
 

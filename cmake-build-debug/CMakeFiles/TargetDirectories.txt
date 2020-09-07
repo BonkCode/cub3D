@@ -1,3 +1,0 @@
-/Users/rtrant/Desktop/Projects/rtrantGit/cub3D/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/rtrant/Desktop/Projects/rtrantGit/cub3D/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/rtrant/Desktop/Projects/rtrantGit/cub3D/cmake-build-debug/CMakeFiles/cub3d.dir

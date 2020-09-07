@@ -6,13 +6,13 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 14:28:01 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/03 13:45:24 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:15:52 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int		parse_line(char *line, t_config *config)
+static int	parse_line(char *line, t_config *config)
 {
 	int i;
 
@@ -41,7 +41,7 @@ int		parse_line(char *line, t_config *config)
 	return (0);
 }
 
-int		parse_file(char *filename, t_config *config)
+int			parse_file(char *filename, t_config *config)
 {
 	int		fd;
 	int		r;

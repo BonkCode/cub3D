@@ -6,13 +6,13 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 16:04:35 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/04 16:19:30 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:20:20 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-t_bitmap_file_header	file_header_init(int file_size)
+static t_bitmap_file_header		file_header_init(int file_size)
 {
 	t_bitmap_file_header	bmp_file_header;
 
@@ -25,7 +25,8 @@ t_bitmap_file_header	file_header_init(int file_size)
 	return (bmp_file_header);
 }
 
-t_bitmap_image_header	image_header_init(int width, int height, int file_size)
+static t_bitmap_image_header	image_header_init(int width, int height,
+												int file_size)
 {
 	t_bitmap_image_header	bmp_image_header;
 

@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 17:36:39 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/06 17:32:07 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:08:01 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,9 @@ void	final_validation(t_config *c)
 		config_error("Error\nFloor wasn't specified\n");
 	if (!c->ceiling)
 		config_error("Error\nCeiling wasn't specified\n");
+	check_file(c->textures.e_path);
+	check_file(c->textures.i_path);
+	check_file(c->textures.n_path);
+	check_file(c->textures.s_path);
+	check_file(c->textures.w_path);
 }

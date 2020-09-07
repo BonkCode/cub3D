@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 15:22:46 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/06 17:29:57 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:19:23 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "cub.h"
 #include "libft.h"
 
-void		convert_map_to_i(char ***map, size_t height,
+static void	convert_map_to_i(char ***map, size_t height,
 						size_t width, int *sprites_count)
 {
 	int	i;
@@ -42,7 +42,7 @@ void		convert_map_to_i(char ***map, size_t height,
 	}
 }
 
-void		init_game(t_game *game)
+static void	init_game(t_game *game)
 {
 	game->vars.win = mlx_new_window(game->vars.mlx, game->config.win.x,
 								game->config.win.y, "Bonk");
@@ -55,7 +55,7 @@ void		init_game(t_game *game)
 	game->player.rotation = game->config.player.dir;
 }
 
-void		setup_hooks(t_game *game)
+static void	setup_hooks(t_game *game)
 {
 	mlx_loop_hook(game->vars.mlx, draw_frame, game);
 	mlx_hook(game->vars.win, KEY_PRESS, KEY_PRESS_MASK, move_player, game);
@@ -63,7 +63,7 @@ void		setup_hooks(t_game *game)
 			exit_game, game);
 }
 
-void		make_screenshot(t_game *game)
+static void	make_screenshot(t_game *game)
 {
 	draw_frame(game);
 	save_bmp(game->config.win.x, game->config.win.y, game->img.addr);

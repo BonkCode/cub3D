@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 13:56:28 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/06 17:25:24 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/07 14:18:36 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 #include <stdio.h>
 
-void			setup_h_rays(t_ray *ray, float *atan, t_player player, int *dof)
+static void		setup_h_rays(t_ray *ray, float *atan, t_player player, int *dof)
 {
 	ray->rotation = player.rotation;
 	if (local_abs(tan(ray->rotation)) > 0.00001)
@@ -44,7 +44,7 @@ void			setup_h_rays(t_ray *ray, float *atan, t_player player, int *dof)
 	}
 }
 
-void			setup_v_rays(t_ray *ray, float *ntan, t_player player, int *dof)
+static void		setup_v_rays(t_ray *ray, float *ntan, t_player player, int *dof)
 {
 	ray->rotation = player.rotation;
 	if (!same_value(ray->rotation, PI / 2) &&
