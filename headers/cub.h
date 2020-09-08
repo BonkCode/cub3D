@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 16:47:53 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/07 16:30:01 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/08 14:02:27 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int			check_file(char *filename, t_config *config);
 int			skip_spaces(char *line, int *i);
 int			ft_atoi_cub3d(char *line, int *i);
 int			parse_file(char *filename, t_config *config);
-void		get_color(char *line, unsigned int *color, int *i, t_config *config);
+void		get_color(char *line, unsigned int *color, int *i,
+												t_config *config);
 void		parse_resolution(char *line, t_config *config, int *i);
 void		texture_path(char *line, char **path, int *i, t_config *config);
 void		get_map(t_config *s, char *line);

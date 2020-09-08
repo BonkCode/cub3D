@@ -6,7 +6,7 @@
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 16:04:35 by rtrant            #+#    #+#             */
-/*   Updated: 2020/09/07 14:20:20 by rtrant           ###   ########.fr       */
+/*   Updated: 2020/09/08 14:01:55 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_bitmap_image_header	image_header_init(int width, int height,
 	return (bmp_image_header);
 }
 
-void					save_bmp(int width, int height, char *data)
+void							save_bmp(int width, int height, char *data)
 {
 	int8_t					fd;
 	t_bitmap_file_header	bmp_file_header;

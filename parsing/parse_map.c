@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/26 15:59:52 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/07 16:00:21 by rtrant           ###   ########.fr       */
+/*   Created: 2020/08/26 15:59:52 by rtrant            #+#    #+#             */
+/*   Updated: 2020/09/08 14:00:14 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char		*copy_map_line(t_config *config, char *line)
 	return (copy);
 }
 
-void		get_map(t_config *con, char *line)
+void			get_map(t_config *con, char *line)
 {
 	char	**tmp;
 	int		j;
@@ -84,7 +84,7 @@ void		get_map(t_config *con, char *line)
 		config_exit(21, con);
 }
 
-void		fill_map(t_config *conf)
+void			fill_map(t_config *conf)
 {
 	int i;
 	int j;

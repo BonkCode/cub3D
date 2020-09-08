@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/07 14:10:04 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/07 16:01:39 by rtrant           ###   ########.fr       */
+/*   Created: 2020/09/07 14:10:04 by rtrant            #+#    #+#             */
+/*   Updated: 2020/09/08 14:02:10 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # define INVALID_MAP	 "Error\nInvalid map\n"
 # define PARSE_ERROR	 "Error\nParsing Error\n"
 # define MULT_PLAYER	 "Error\n2 players on map\n"
-
 
 void		free_texture_path(t_config *config);
 void		free_map(char **map);

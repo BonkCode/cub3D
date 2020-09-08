@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtrant <rtrant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/07 13:53:00 by rvernius          #+#    #+#             */
-/*   Updated: 2020/09/07 15:49:38 by rtrant           ###   ########.fr       */
+/*   Created: 2020/09/07 13:53:00 by rtrant            #+#    #+#             */
+/*   Updated: 2020/09/08 13:58:09 by rtrant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static	void		clear_and_stop_mlx(t_game *game)
 	game->img.img = NULL;
 }
 
-static void		clean_garbage(t_game *game)
+static void			clean_garbage(t_game *game)
 {
 	free_texture_path(&game->config);
 	free_map(game->config.map.map);
 	clear_and_stop_mlx(game);
 }
 
-static void		print_message(int exit_code)
+static void			print_message(int exit_code)
 {
 	(exit_code == 0) ? ft_putstr_fd(OK_EXIT, 2) : 0;
 	(exit_code == 1) ? ft_putstr_fd(ARGS_NUM, 2) : 0;
@@ -58,14 +58,14 @@ static void		print_message(int exit_code)
 	(exit_code == 22) ? ft_putstr_fd(MULT_PLAYER, 2) : 0;
 }
 
-void			game_exit(int exit_code, t_game *game)
+void				game_exit(int exit_code, t_game *game)
 {
 	clean_garbage(game);
 	print_message(exit_code);
 	exit(exit_code);
 }
 
-int				cross_exit(t_game *game)
+int					cross_exit(t_game *game)
 {
 	game_exit(0, game);
 	return (0);
